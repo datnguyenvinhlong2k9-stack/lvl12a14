@@ -34,7 +34,7 @@ button, input { font: inherit; }
 main { width: min(100% - 36px, 900px); margin: 0 auto; padding: 100px 0 60px; }
 .player-card {
   position: relative;
-  width: min(100%, 320px);
+  width: min(100%, 340px);
   margin: 0 auto;
   padding: 23px 22px 20px;
   border: 1px solid var(--card-border);
@@ -59,7 +59,7 @@ main { width: min(100% - 36px, 900px); margin: 0 auto; padding: 100px 0 60px; }
 .player-card.is-playing .record-disc { animation-play-state: running; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .track-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 2px; }
-.track-titles h1 { margin: 0; color: #fff; font-size: 15px; line-height: 1.45; font-weight: 800; letter-spacing: -.015em; }
+.track-titles h1 { margin: 0; color: #fff; font-size: 16px; line-height: 1.45; font-weight: 800; letter-spacing: -.015em; }
 .track-titles p { margin: 3px 0 0; color: var(--muted); font-size: 11px; }
 .icon-button { display: inline-grid; place-items: center; flex: 0 0 auto; padding: 0; color: #c9bfd3; background: transparent; border: 1px solid transparent; cursor: pointer; transition: color .2s, background .2s, border-color .2s, transform .2s; }
 .icon-button:hover { color: #fff; border-color: rgba(255,255,255,.16); background: rgba(255,255,255,.06); }
@@ -70,6 +70,7 @@ main { width: min(100% - 36px, 900px); margin: 0 auto; padding: 100px 0 60px; }
 .favorite-button.active svg { fill: currentColor; }
 .progress-block { margin-top: 19px; }
 .range { appearance: none; -webkit-appearance: none; width: 100%; margin: 0; border-radius: 999px; cursor: pointer; outline: none; }
+.range:disabled { cursor: default; opacity: .6; }
 .progress-range { height: 4px; background: linear-gradient(to right, #b44cf0 0%, #e451a6 0%, var(--track) 0%); }
 .range::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 9px; height: 9px; border-radius: 50%; background: #f3d9ff; box-shadow: 0 0 8px rgba(225, 124, 255, .7); opacity: 0; transition: opacity .2s; }
 .range:hover::-webkit-slider-thumb { opacity: 1; }
@@ -93,8 +94,8 @@ main { width: min(100% - 36px, 900px); margin: 0 auto; padding: 100px 0 60px; }
 .volume-range { height: 3px; background: linear-gradient(to right, #b44cf0 0%, #e451a6 72%, var(--track) 72%); }
 .volume-range::-webkit-slider-thumb { width: 8px; height: 8px; opacity: 1; background: #e4a7ff; }
 .volume-range::-moz-range-thumb { width: 8px; height: 8px; opacity: 1; background: #e4a7ff; }
-.audio-message { min-height: 13px; margin: 12px 0 0; text-align: center; color: #8c8198; font-size: 9px; line-height: 1.5; }
-.audio-message strong { color: #c9a6e2; font-weight: 600; }
+.audio-message { min-height: 0; margin: 0; text-align: center; color: #bca7cd; font-size: 9px; line-height: 1.55; }
+.audio-message:not(:empty) { margin-top: 11px; }
 audio { display: none; }
 .lyrics-section { width: min(100%, 690px); margin: 62px auto 0; }
 .lyrics-heading { text-align: center; margin-bottom: 21px; }
@@ -104,7 +105,7 @@ audio { display: none; }
 .lyrics-card { padding: 25px clamp(18px, 5vw, 42px) 22px; border: 1px solid rgba(206,174,233,.14); border-radius: 19px; background: linear-gradient(145deg, rgba(35,22,48,.76), rgba(23,14,32,.84)); box-shadow: 0 18px 55px rgba(0,0,0,.22); }
 .chord-key { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 7px; margin-bottom: 23px; padding-bottom: 17px; border-bottom: 1px solid rgba(222,204,239,.09); }
 .key-label { margin-right: 4px; color: #8e8299; font-size: 8px; font-weight: 700; letter-spacing: .14em; }
-.chord-chip { display: inline-flex; align-items: center; justify-content: center; min-width: 31px; height: 23px; padding: 0 8px; color: #e4c4ff; border: 1px solid rgba(186,127,239,.25); border-radius: 7px; background: rgba(132,69,183,.17); font-size: 10px; font-weight: 800; line-height: 1; }
+.chord-chip { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-width: 31px; height: 23px; padding: 0 8px; color: #e4c4ff; border: 1px solid rgba(186,127,239,.25); border-radius: 7px; background: rgba(132,69,183,.17); font-size: 10px; font-weight: 800; line-height: 1; }
 .lyrics-content { display: flex; flex-direction: column; gap: 25px; }
 .lyric-verse { display: flex; flex-direction: column; align-items: center; gap: 7px; }
 .lyric-line { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 5px 6px; color: #d8cfdf; font-size: 12px; line-height: 1.9; text-align: center; }
@@ -112,7 +113,13 @@ audio { display: none; }
 .lyric-line .lyric-text { white-space: pre-wrap; }
 .lyric-verse:last-child .lyric-line { color: #e5d7f0; }
 .lyrics-signoff { margin-top: 27px; padding-top: 16px; border-top: 1px solid rgba(222,204,239,.09); color: #84758f; text-align: center; font-size: 8px; font-weight: 700; letter-spacing: .16em; }
-footer { padding: 0 15px 25px; color: #74697f; text-align: center; font-size: 9px; letter-spacing: .04em; }
+.credits-section { width: min(100%, 690px); margin: 28px auto 0; padding: 22px 18px; text-align: center; border: 1px solid rgba(206,174,233,.14); border-radius: 18px; background: linear-gradient(145deg, rgba(35,22,48,.62), rgba(23,14,32,.72)); box-shadow: 0 14px 42px rgba(0,0,0,.16); }
+.credits-label { margin: 0 0 14px; color: #bd8be7; font-size: 9px; font-weight: 800; letter-spacing: .22em; }
+.credits-names { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 9px; }
+.credit-name { display: inline-flex; align-items: center; min-height: 30px; padding: 0 13px; color: #f4eafa; background: rgba(132,69,183,.16); border: 1px solid rgba(186,127,239,.25); border-radius: 50px; font-size: 11px; font-weight: 600; }
+.credit-separator { color: #d179ec; font-size: 10px; }
+.credits-caption { margin: 13px 0 0; color: #8e8299; font-size: 9px; letter-spacing: .04em; }
+footer { padding: 0 15px 28px; color: #74697f; text-align: center; font-size: 9px; letter-spacing: .04em; }
 footer span { padding: 0 5px; color: #b77ce8; }
 @media (min-width: 900px) { main { padding-top: 100px; } }
 @media (max-width: 600px) {
@@ -120,83 +127,11 @@ footer span { padding: 0 5px; color: #b77ce8; }
   .school-name { font-size: 10px; }
   .class-name { font-size: 15px; }
   main { width: min(100% - 28px, 500px); padding-top: 102px; }
-  .player-card { width: min(100%, 320px); }
+  .player-card { width: min(100%, 340px); }
   .lyrics-section { margin-top: 48px; }
   .lyrics-card { padding: 21px 15px 19px; }
   .lyric-line { font-size: 11px; }
+  .credits-section { margin-top: 22px; padding: 20px 12px; }
+  .credits-names { gap: 7px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
-
-/* PHẦN GIỚI THIỆU TÁC GIẢ */
-.credits-section {
-  width: min(100%, 690px);
-  margin: 30px auto 0;
-  padding: 23px 18px;
-  text-align: center;
-  border: 1px solid rgba(206, 174, 233, .14);
-  border-radius: 18px;
-  background: linear-gradient(
-    145deg,
-    rgba(35, 22, 48, .65),
-    rgba(23, 14, 32, .72)
-  );
-  box-shadow: 0 14px 42px rgba(0, 0, 0, .16);
-}
-
-.credits-label {
-  margin: 0 0 15px;
-  color: #bd8be7;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: .22em;
-}
-
-.credits-names {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 9px;
-}
-
-.credit-name {
-  display: inline-flex;
-  align-items: center;
-  min-height: 30px;
-  padding: 0 13px;
-  color: #f4eafa;
-  background: rgba(132, 69, 183, .16);
-  border: 1px solid rgba(186, 127, 239, .25);
-  border-radius: 50px;
-  font-size: 11px;
-  font-weight: 600;
-  transition: .25s ease;
-}
-
-.credit-name:hover {
-  background: rgba(169, 77, 242, .25);
-  border-color: #bd8be7;
-}
-
-.credit-separator {
-  color: #d179ec;
-  font-size: 10px;
-}
-
-.credits-caption {
-  margin: 14px 0 0;
-  color: #8e8299;
-  font-size: 9px;
-  letter-spacing: .04em;
-}
-
-@media (max-width: 600px) {
-  .credits-section {
-    margin-top: 25px;
-    padding: 20px 12px;
-  }
-
-  .credits-names {
-    gap: 7px;
-  }
-}

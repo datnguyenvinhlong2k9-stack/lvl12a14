@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b0612">
-  <meta name="description" content="Ca khúc Lưu vào lòng – sáng tác của tập thể 12A14, THPT Lưu Văn Liệt.">
+  <meta name="description" content="Lưu vào lòng – ca khúc của tập thể 12A14, THPT Lưu Văn Liệt.">
   <title>Lưu vào lòng | 12A14</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,7 @@
 
   <main>
     <section class="player-card" aria-label="Trình phát bài hát Lưu vào lòng">
-      <div class="record-wrap" id="recordWrap" aria-hidden="true">
+      <div class="record-wrap" aria-hidden="true">
         <div class="record-disc">
           <div class="record-grooves"></div>
           <div class="record-label"><span></span></div>
@@ -42,7 +42,7 @@
       </div>
 
       <div class="progress-block">
-        <input id="progress" class="range progress-range" type="range" min="0" max="1000" value="0" step="1" aria-label="Tua bài hát">
+        <input id="progress" class="range progress-range" type="range" min="0" max="1000" value="0" step="1" aria-label="Tua bài hát" disabled>
         <div class="time-row"><span id="currentTime">0:00</span><span id="duration">0:00</span></div>
       </div>
 
@@ -57,7 +57,7 @@
           <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10-6.5-10-6.5Z"/></svg>
           <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
         </button>
-        <button class="icon-button skip-button" id="restartEndButton" type="button" aria-label="Tua đến cuối bài" title="Tua đến cuối bài">
+        <button class="icon-button skip-button" id="restartEndButton" type="button" aria-label="Tua gần cuối bài" title="Tua gần cuối bài">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5v14M5 6l9 6-9 6V6Z"/></svg>
         </button>
         <button class="icon-button utility-button" id="repeatButton" type="button" aria-label="Lặp lại bài hát" title="Lặp lại bài hát">
@@ -69,11 +69,10 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4H4ZM17 9a5 5 0 0 1 0 6M19.5 6.5a9 9 0 0 1 0 11"/></svg>
         <input id="volume" class="range volume-range" type="range" min="0" max="1" value="0.72" step="0.01" aria-label="Âm lượng">
       </div>
-      <p class="audio-message" id="audioMessage" role="status">Hãy thêm file <strong>luu-vao-long.mp3</strong> vào repository để phát bài hát.</p>
-      <audio id="audio" preload="metadata">
-        <source src="LVLluuvaolong.mp3" type="audio/mpeg">
-        Trình duyệt của bạn không hỗ trợ phát âm thanh.
-      </audio>
+
+      <p class="audio-message" id="audioMessage" role="status" aria-live="polite"></p>
+      <!-- File MP3 phải nằm cùng cấp với index.html và giữ đúng chữ hoa/thường: LVLluuvaolong.mp3 -->
+      <audio id="audio" src="./LVLluuvaolong.mp3" preload="metadata"></audio>
     </section>
 
     <section class="lyrics-section" aria-labelledby="lyricsTitle">
@@ -82,6 +81,7 @@
         <h2 id="lyricsTitle">Lời bài hát</h2>
         <p>Hợp âm guitar được đặt ngay trong từng câu hát</p>
       </div>
+
       <article class="lyrics-card">
         <div class="chord-key" aria-label="Các hợp âm sử dụng">
           <span class="key-label">HỢP ÂM</span>
@@ -91,43 +91,64 @@
           <span class="chord-chip">G</span>
         </div>
 
-<div id="lyricsContent" class="lyrics-content">
+        <!-- Lời bài hát được đặt trực tiếp trong HTML để không biến mất khi JavaScript lỗi. -->
+        <div class="lyrics-content" id="lyricsContent">
+          <div class="lyric-verse">
+            <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Vừa đây thôi</span></div>
+            <div class="lyric-line"><span class="lyric-text">Mình ngân nga </span><span class="chord-chip">Am</span><span class="lyric-text"> những câu chuyện qua</span></div>
+            <div class="lyric-line"><span class="lyric-text">Dòng thời gian thôi đưa </span><span class="chord-chip">F</span></div>
+            <div class="lyric-line"><span class="lyric-text">Lặng nhìn cơn mưa, lòng chợt nhớt những kỉ niệm xưa </span><span class="chord-chip">G</span></div>
+          </div>
 
-  <div class="lyric-verse">
-    <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Vừa đây thôi</span></div>
-    <div class="lyric-line"><span class="lyric-text">Mình ngân nga </span><span class="chord-chip">Am</span><span class="lyric-text"> những câu chuyện qua</span></div>
-    <div class="lyric-line"><span class="lyric-text">Dòng thời gian thôi đưa </span><span class="chord-chip">F</span></div>
-    <div class="lyric-line"><span class="lyric-text">Lặng nhìn cơn mưa, lòng chợt nhớt những kỉ niệm xưa </span><span class="chord-chip">G</span></div>
-  </div>
+          <div class="lyric-verse">
+            <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Nhớ phút giây ngày ấy</span></div>
+            <div class="lyric-line"><span class="lyric-text">Có bạn và ta </span><span class="chord-chip">Am</span></div>
+            <div class="lyric-line"><span class="chord-chip">F</span><span class="lyric-text">Có những khoảnh khắc</span></div>
+            <div class="lyric-line"><span class="lyric-text">Chúng mình hoà ca </span><span class="chord-chip">G</span></div>
+          </div>
 
-  <div class="lyric-verse">
-    <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Nhớ phút giây ngày ấy</span></div>
-    <div class="lyric-line"><span class="lyric-text">Có bạn và ta </span><span class="chord-chip">Am</span></div>
-    <div class="lyric-line"><span class="chord-chip">F</span><span class="lyric-text">Có những khoảnh khắc</span></div>
-    <div class="lyric-line"><span class="lyric-text">Chúng mình hoà ca </span><span class="chord-chip">G</span></div>
-  </div>
+          <div class="lyric-verse">
+            <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Sẽ có những lúc, trái tim u buồn </span><span class="chord-chip">Am</span></div>
+            <div class="lyric-line"><span class="chord-chip">F</span><span class="lyric-text">Sẽ có những phút ta chẳng </span><span class="chord-chip">G</span><span class="lyric-text"> hiểu nhau</span></div>
+            <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Bạn bè phải cùng nhau </span><span class="chord-chip">Am</span></div>
+            <div class="lyric-line"><span class="lyric-text">Những tình cảm ấy </span><span class="chord-chip">F</span><span class="lyric-text"> sẽ rồi phải xa </span><span class="chord-chip">G</span></div>
+          </div>
 
-  <div class="lyric-verse">
-    <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Sẽ có những lúc, trái tim u buồn </span><span class="chord-chip">Am</span></div>
-    <div class="lyric-line"><span class="chord-chip">F</span><span class="lyric-text">Sẽ có những phút ta chẳng </span><span class="chord-chip">G</span><span class="lyric-text"> hiểu nhau</span></div>
-    <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Bạn bè phải cùng nhau </span><span class="chord-chip">Am</span></div>
-    <div class="lyric-line"><span class="lyric-text">Những tình cảm ấy </span><span class="chord-chip">F</span><span class="lyric-text"> sẽ rồi phải xa </span><span class="chord-chip">G</span></div>
-  </div>
+          <div class="lyric-verse">
+            <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Ngày mai sau ta chẳng gặp lại nhau</span></div>
+            <div class="lyric-line"><span class="chord-chip">Am</span><span class="lyric-text">Những thành phố lớn mỗi đứa đi một hướng</span></div>
+            <div class="lyric-line"><span class="chord-chip">F</span><span class="lyric-text">Chung bước đi chỉ là, </span><span class="chord-chip">G</span><span class="lyric-text"> mỗi đứa đi một ngã</span></div>
+            <div class="lyric-line"><span class="lyric-text">Sau giấc mơ này rồi cũng phải chia xa</span></div>
+          </div>
 
-  <div class="lyric-verse">
-    <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Ngày mai sau ta chẳng gặp lại nhau</span></div>
-    <div class="lyric-line"><span class="chord-chip">Am</span><span class="lyric-text">Những thành phố lớn mỗi đứa đi một hướng</span></div>
-    <div class="lyric-line"><span class="chord-chip">F</span><span class="lyric-text">Chung bước đi chỉ là, </span><span class="chord-chip">G</span><span class="lyric-text"> mỗi đứa đi một ngã</span></div>
-    <div class="lyric-line"><span class="lyric-text">Sau giấc mơ này rồi cũng phải chia xa</span></div>
-  </div>
+          <div class="lyric-verse">
+            <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Dòng thời gian sau chẳng thể ngừng trôi</span></div>
+            <div class="lyric-line"><span class="chord-chip">Am</span><span class="lyric-text">Để ta thấy những kỉ niệm ở đây</span></div>
+            <div class="lyric-line"><span class="lyric-text">Sẽ ít thôi nhưng yêu nhiều</span></div>
+            <div class="lyric-line"><span class="lyric-text">Sẽ mến nhau thêm thân nhiều</span></div>
+            <div class="lyric-line"><span class="lyric-text">Xin thời gian cứ trôi, cứ trôi chậm lại thôi</span></div>
+            <div class="lyric-line"><span class="lyric-text">Để tôi còn được ở đây</span></div>
+          </div>
+        </div>
 
-  <div class="lyric-verse">
-    <div class="lyric-line"><span class="chord-chip">C</span><span class="lyric-text">Dòng thời gian sau chẳng thể ngừng trôi</span></div>
-    <div class="lyric-line"><span class="chord-chip">Am</span><span class="lyric-text">Để ta thấy những kỉ niệm ở đây</span></div>
-    <div class="lyric-line"><span class="lyric-text">Sẽ ít thôi nhưng yêu nhiều</span></div>
-    <div class="lyric-line"><span class="lyric-text">Sẽ mến nhau thêm thân nhiều</span></div>
-    <div class="lyric-line"><span class="lyric-text">Xin thời gian cứ trôi, cứ trôi chậm lại thôi</span></div>
-    <div class="lyric-line"><span class="lyric-text">Để tôi còn được ở đây</span></div>
-  </div>
+        <div class="lyrics-signoff">♪ &nbsp; TỪ TẬP THỂ 12A14 &nbsp; ♪</div>
+      </article>
+    </section>
 
-</div>
+    <section class="credits-section" aria-label="Thông tin sáng tác">
+      <p class="credits-label">✦ &nbsp; SÁNG TÁC BỞI &nbsp; ✦</p>
+      <div class="credits-names">
+        <span class="credit-name">Anh Thư</span>
+        <span class="credit-separator">✦</span>
+        <span class="credit-name">Hưng Thịnh</span>
+        <span class="credit-separator">✦</span>
+        <span class="credit-name">Quốc Đạt</span>
+      </div>
+      <p class="credits-caption">Một sáng tác của tập thể 12A14</p>
+    </section>
+  </main>
+
+  <footer>THPT Lưu Văn Liệt <span>·</span> Tập thể 12A14</footer>
+  <script src="script.js"></script>
+</body>
+</html>

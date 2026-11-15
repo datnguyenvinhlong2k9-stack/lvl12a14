@@ -1,42 +1,4 @@
-// File nhạc cần đặt cùng thư mục với index.html và tên đúng là:
-// luu-vao-long.mp3
-const AUDIO_FILE = "LVLluuvaolong.mp3";
-
-// Lời bài hát và hợp âm. Cú pháp [C], [Am], [F], [G] sẽ tạo hộp hợp âm.
-const verses = [
-  [
-    "[C] Vừa đây thôi",
-    "Mình ngân nga [Am] những câu chuyện qua",
-    "Dòng thời gian thôi đưa [F]",
-    "Lặng nhìn cơn mưa, lòng chợt nhớt những kỉ niệm xưa [G]"
-  ],
-  [
-    "[C] Nhớ phút giây ngày ấy",
-    "Có bạn và ta [Am]",
-    "[F] Có những khoảnh khắc",
-    "Chúng mình hoà ca [G]"
-  ],
-  [
-    "[C] Sẽ có những lúc, trái tim u buồn [Am]",
-    "[F] Sẽ có những phút ta chẳng [G] hiểu nhau",
-    "[C] Bạn bè phải cùng nhau [Am]",
-    "Những tình cảm ấy [F] sẽ rồi phải xa [G]"
-  ],
-  [
-    "[C] Ngày mai sau ta chẳng gặp lại nhau",
-    "[Am] Những thành phố lớn mỗi đứa đi một hướng",
-    "[F] Chung bước đi chỉ là, [G] mỗi đứa đi một ngã",
-    "Sau giấc mơ này rồi cũng phải chia xa"
-  ],
-  [
-    "[C] Dòng thời gian sau chẳng thể ngừng trôi",
-    "[Am] Để ta thấy những kỉ niệm ở đây",
-    "Sẽ ít thôi nhưng yêu nhiều",
-    "Sẽ mến nhau thêm thân nhiều",
-    "Xin thời gian cứ trôi, cứ trôi chậm lại thôi",
-    "Để tôi còn được ở đây"
-  ]
-];
+"use strict";
 
 const audio = document.getElementById("audio");
 const playerCard = document.querySelector(".player-card");
@@ -46,6 +8,7 @@ const volume = document.getElementById("volume");
 const currentTimeLabel = document.getElementById("currentTime");
 const durationLabel = document.getElementById("duration");
 const audioMessage = document.getElementById("audioMessage");
+
 function formatTime(seconds) {
   if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
   const minutes = Math.floor(seconds / 60);
@@ -62,11 +25,15 @@ function updateProgress() {
   const duration = audio.duration;
   const current = audio.currentTime || 0;
   currentTimeLabel.textContent = formatTime(current);
+
   if (Number.isFinite(duration) && duration > 0) {
+    const percentage = (current / duration) * 100;
     progress.value = String(Math.round((current / duration) * 1000));
-    setRangeFill(progress, (current / duration) * 100);
+    progress.disabled = false;
+    setRangeFill(progress, percentage);
   } else {
     progress.value = "0";
+    progress.disabled = true;
     setRangeFill(progress, 0);
   }
 }
@@ -74,10 +41,11 @@ function updateProgress() {
 async function togglePlayback() {
   if (audio.paused) {
     try {
+      audioMessage.textContent = "Đang tải bài hát…";
       await audio.play();
-      audioMessage.textContent = "Đang phát: Lưu vào lòng";
     } catch (error) {
-      audioMessage.textContent = "Chưa phát được nhạc. Hãy tải đúng file luu-vao-long.mp3 lên repository.";
+      console.error("Không thể phát file âm thanh:", error);
+      audioMessage.textContent = "Không phát được nhạc. Hãy kiểm tra file LVLluuvaolong.mp3 trong repository.";
     }
   } else {
     audio.pause();
@@ -85,21 +53,50 @@ async function togglePlayback() {
 }
 
 playButton.addEventListener("click", togglePlayback);
-audio.addEventListener("play", () => playerCard.classList.add("is-playing"));
-audio.addEventListener("pause", () => playerCard.classList.remove("is-playing"));
+
+audio.addEventListener("play", () => {
+  playerCard.classList.add("is-playing");
+  playButton.setAttribute("aria-label", "Tạm dừng nhạc");
+  audioMessage.textContent = "Đang phát: Lưu vào lòng";
+});
+
+audio.addEventListener("pause", () => {
+  playerCard.classList.remove("is-playing");
+  playButton.setAttribute("aria-label", "Phát nhạc");
+  if (audio.currentTime > 0 && !audio.ended) {
+    audioMessage.textContent = "Đã tạm dừng bài hát.";
+  }
+});
+
 audio.addEventListener("ended", () => {
   playerCard.classList.remove("is-playing");
+  playButton.setAttribute("aria-label", "Phát nhạc");
   if (!audio.loop) audioMessage.textContent = "Bài hát đã phát xong. Nhấn Play để nghe lại.";
 });
-audio.addEventListener("timeupdate", updateProgress);
+
 audio.addEventListener("loadedmetadata", () => {
   durationLabel.textContent = formatTime(audio.duration);
   audioMessage.textContent = "Chạm nút Play để nghe ca khúc của tập thể 12A14.";
   updateProgress();
 });
-audio.addEventListener("error", () => {
-  audioMessage.textContent = "Chưa tìm thấy file nhạc. Hãy tải luu-vao-long.mp3 lên cùng thư mục với index.html.";
+
+audio.addEventListener("canplay", () => {
+  if (audio.paused && audio.currentTime === 0) {
+    audioMessage.textContent = "Chạm nút Play để nghe ca khúc của tập thể 12A14.";
+  }
 });
+
+audio.addEventListener("waiting", () => {
+  audioMessage.textContent = "Đang tải âm thanh…";
+});
+
+audio.addEventListener("error", () => {
+  const code = audio.error ? audio.error.code : 0;
+  console.error("Lỗi tải âm thanh. Mã lỗi:", code, "Nguồn:", audio.currentSrc);
+  audioMessage.textContent = "Không tải được file LVLluuvaolong.mp3. Hãy kiểm tra tên file và bảo đảm file nằm cùng thư mục với index.html.";
+});
+
+audio.addEventListener("timeupdate", updateProgress);
 
 progress.addEventListener("input", () => {
   if (Number.isFinite(audio.duration) && audio.duration > 0) {
@@ -112,21 +109,25 @@ volume.addEventListener("input", () => {
   audio.volume = Number(volume.value);
   setRangeFill(volume, Number(volume.value) * 100);
 });
+
 audio.volume = Number(volume.value);
 setRangeFill(volume, Number(volume.value) * 100);
+setRangeFill(progress, 0);
 
-// Nút tua về đầu và tua đến gần cuối bài.
+// Phát lại từ đầu.
 document.getElementById("restartButton").addEventListener("click", () => {
   audio.currentTime = 0;
   if (audio.paused) togglePlayback();
 });
+
+// Tua đến gần cuối bài.
 document.getElementById("restartEndButton").addEventListener("click", () => {
   if (Number.isFinite(audio.duration) && audio.duration > 0) {
     audio.currentTime = Math.max(0, audio.duration - 1);
   }
 });
 
-// Bật/tắt phát ngẫu nhiên (một bài đơn nên nút này chỉ đổi trạng thái giao diện).
+// Với một ca khúc duy nhất, nút ngẫu nhiên chỉ thể hiện trạng thái bật/tắt.
 document.getElementById("shuffleButton").addEventListener("click", (event) => {
   const button = event.currentTarget;
   const active = button.classList.toggle("active");

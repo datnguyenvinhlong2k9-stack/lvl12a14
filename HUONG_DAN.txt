@@ -1,0 +1,36 @@
+CAP NHAT WEBSITE LUU VAO LONG - 12A14
+
+Trong repository: datnguyenvinhlong2k9-stack/lvl12a14
+
+GOI NAY CO 3 FILE O NGAY CAP NGOAI CUNG:
+- index.html
+- style.css
+- script.js
+
+CACH CAP NHAT:
+1. Tai va giai nen file ZIP nay.
+2. Mo repository lvl12a14 tren GitHub.
+3. Chon Add file > Upload files.
+4. Mo thu muc vua giai nen va keo 3 FILE: index.html, style.css, script.js vao GitHub.
+   KHONG keo ca thu muc. KHONG xoa file MP3 dang co.
+5. Neu GitHub hoi ghi de tep trung ten, xac nhan thay the.
+6. Nhap Commit changes de luu.
+7. Giữ nguyên file nhạc trong repository, tên phải chính xác: LVLluuvaolong.mp3
+8. Cấu trúc cuối cùng phải cùng cấp trong thư mục gốc:
+   index.html
+   style.css
+   script.js
+   LVLluuvaolong.mp3
+
+Website dùng đường dẫn âm thanh tương đối ./LVLluuvaolong.mp3.
+Lời bài hát đã được lưu trực tiếp trong index.html, không phụ thuộc JS để hiển thị.
+Phần cuối trang có khung SÁNG TÁC BỞI: Anh Thư, Hưng Thịnh, Quốc Đạt.
+
+Sau khi Commit, xem repository > Actions. Khi pages build and deployment hoàn tất thành công,
+mở https://datnguyenvinhlong2k9-stack.github.io/lvl12a14/ và nhấn Ctrl+Shift+R.
+
+KIỂM TRA ÂM THANH:
+Mở trực tiếp:
+https://datnguyenvinhlong2k9-stack.github.io/lvl12a14/LVLluuvaolong.mp3
+Nếu mở trực tiếp không phát/tải được, cần kiểm tra lại bản thân file MP3 (định dạng/encoding),
+không phải chỉ sửa HTML.
