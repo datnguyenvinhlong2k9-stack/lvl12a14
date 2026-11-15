@@ -132,6 +132,6 @@ footer span { padding: 0 5px; color: #b77ce8; }
   .lyrics-card { padding: 21px 15px 19px; }
   .lyric-line { font-size: 11px; }
   .credits-section { margin-top: 22px; padding: 20px 12px; }
-  .credits-names { gap: 7px; }
+  .credits-names { gap: 20px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
