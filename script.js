@@ -1,6 +1,6 @@
 // File nhạc cần đặt cùng thư mục với index.html và tên đúng là:
 // luu-vao-long.mp3
-const AUDIO_FILE = "luu-vao-long.mp3";
+const AUDIO_FILE = "LVLluuvaolong.mp3";
 
 // Lời bài hát và hợp âm. Cú pháp [C], [Am], [F], [G] sẽ tạo hộp hợp âm.
 const verses = [
