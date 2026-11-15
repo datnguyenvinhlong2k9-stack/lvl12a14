@@ -126,3 +126,77 @@ footer span { padding: 0 5px; color: #b77ce8; }
   .lyric-line { font-size: 11px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
+
+/* PHẦN GIỚI THIỆU TÁC GIẢ */
+.credits-section {
+  width: min(100%, 690px);
+  margin: 30px auto 0;
+  padding: 23px 18px;
+  text-align: center;
+  border: 1px solid rgba(206, 174, 233, .14);
+  border-radius: 18px;
+  background: linear-gradient(
+    145deg,
+    rgba(35, 22, 48, .65),
+    rgba(23, 14, 32, .72)
+  );
+  box-shadow: 0 14px 42px rgba(0, 0, 0, .16);
+}
+
+.credits-label {
+  margin: 0 0 15px;
+  color: #bd8be7;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .22em;
+}
+
+.credits-names {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.credit-name {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 13px;
+  color: #f4eafa;
+  background: rgba(132, 69, 183, .16);
+  border: 1px solid rgba(186, 127, 239, .25);
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 600;
+  transition: .25s ease;
+}
+
+.credit-name:hover {
+  background: rgba(169, 77, 242, .25);
+  border-color: #bd8be7;
+}
+
+.credit-separator {
+  color: #d179ec;
+  font-size: 10px;
+}
+
+.credits-caption {
+  margin: 14px 0 0;
+  color: #8e8299;
+  font-size: 9px;
+  letter-spacing: .04em;
+}
+
+@media (max-width: 600px) {
+  .credits-section {
+    margin-top: 25px;
+    padding: 20px 12px;
+  }
+
+  .credits-names {
+    gap: 7px;
+  }
+}
