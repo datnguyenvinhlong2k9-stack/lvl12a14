@@ -46,37 +46,6 @@ const volume = document.getElementById("volume");
 const currentTimeLabel = document.getElementById("currentTime");
 const durationLabel = document.getElementById("duration");
 const audioMessage = document.getElementById("audioMessage");
-
-// Render lời ca thành các dòng, tách riêng hộp hợp âm khỏi phần lời.
-const lyricsContent = document.getElementById("lyricsContent");
-verses.forEach((verse) => {
-  const verseElement = document.createElement("div");
-  verseElement.className = "lyric-verse";
-
-  verse.forEach((line) => {
-    const lineElement = document.createElement("div");
-    lineElement.className = "lyric-line";
-
-    const parts = line.split(/(\[(?:C|Am|F|G)\])/g).filter(Boolean);
-    parts.forEach((part) => {
-      const chordMatch = part.match(/^\[(C|Am|F|G)\]$/);
-      if (chordMatch) {
-        const chord = document.createElement("span");
-        chord.className = "chord-chip";
-        chord.textContent = chordMatch[1];
-        lineElement.appendChild(chord);
-      } else {
-        const text = document.createElement("span");
-        text.className = "lyric-text";
-        text.textContent = part;
-        lineElement.appendChild(text);
-      }
-    });
-    verseElement.appendChild(lineElement);
-  });
-  lyricsContent.appendChild(verseElement);
-});
-
 function formatTime(seconds) {
   if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
   const minutes = Math.floor(seconds / 60);
